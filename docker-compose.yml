@@ -1,0 +1,57 @@
+version: '3.8'
+services:
+
+  build:
+    build:
+      context: ./src/build
+    volumes:
+      - type: volume
+        source: wardir
+        target: /tmp/webapps/war
+      - type: volume
+        source: confdir
+        target: /tmp/webapps/conf
+
+  db:
+    container_name: mysql
+    image: mysql
+    ports:
+      - "3306"
+    volumes:
+      - ./db/data:/var/lib/mysql
+      - ./db/conf:/etc/mysql/conf.d
+    networks:
+      dbnet:
+        ipv4_address: 10.0.0.2
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=app42
+      - MYSQL_USER=tomcat
+      - MYSQL_PASSWORD=yJebq3iVChtH49UU
+
+  prod:
+    container_name: tomcat
+    image: tomcat:9.0
+    ports:
+      - "80:8080"
+    volumes:
+      - type: volume
+        source: wardir
+        target: /usr/local/tomcat/webapps
+      - type: volume
+        source: confdir
+        target: /usr/local/tomcat/ROOT/
+    networks:
+      dbnet:
+        ipv4_address: 10.0.0.3
+
+networks:
+  dbnet:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.0.0.0/29
+
+volumes:
+  wardir:
+  confdir:
