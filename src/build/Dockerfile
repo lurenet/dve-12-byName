@@ -26,5 +26,5 @@ RUN find "$DBCONF" -exec sed -i -e "s/$(grep app42.paas.db.name $DBCONF)/app42.p
     find "$DBCONF" -exec sed -i -e "s/$(grep app42.paas.db.port $DBCONF)/app42.paas.db.port = "$DBPORT"/" "{}" \;
 
 RUN mvn clean && mvn install
-RUN mkdir -p $WARDIR && cp target/App42PaaS-Java-MySQL-Sample-0.0.1-SNAPSHOT.war $WARDIR/app42.war
+RUN mkdir -p $WARDIR && cp target/App42PaaS-Java-MySQL-Sample-0.0.1-SNAPSHOT.war $WARDIR/
 RUN mkdir -p $CONFDIR && cp $DBCONF $CONFDIR/
