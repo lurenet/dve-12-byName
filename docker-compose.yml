@@ -24,7 +24,7 @@ services:
       dbnet:
         ipv4_address: 10.0.0.2
     environment:
-      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_ROOT_PASSWORD=sSUomKm1Q7IPdWOD
       - MYSQL_DATABASE=app42
       - MYSQL_USER=tomcat
       - MYSQL_PASSWORD=yJebq3iVChtH49UU
