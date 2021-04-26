@@ -7,7 +7,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ etc/localtime && echo $TZ > /etc/timezone
 RUN apt update && apt install maven git -y
 
 WORKDIR tmp
-RUN git clone https://github.com/lurenet/app42-copy.git
+RUN git clone https://github.com/lurenet/App42PaaS-Java-MySQL-Sample.git
 
 WORKDIR App42PaaS-Java-MySQL-Sample
 
