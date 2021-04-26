@@ -8,9 +8,6 @@ services:
       - type: volume
         source: wardir
         target: /tmp/webapps/war
-      - type: volume
-        source: confdir
-        target: /tmp/webapps/conf
 
   db:
     container_name: mysql
@@ -38,8 +35,8 @@ services:
       - type: volume
         source: wardir
         target: /usr/local/tomcat/webapps
-      - type: volume
-        source: confdir
+      - type: bind
+        source: ./src/tomcat
         target: /usr/local/tomcat/ROOT/
     networks:
       dbnet:
@@ -54,4 +51,3 @@ networks:
 
 volumes:
   wardir:
-  confdir:
