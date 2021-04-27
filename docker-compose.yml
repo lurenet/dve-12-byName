@@ -17,9 +17,6 @@ services:
     volumes:
       - ./db/data:/var/lib/mysql
       - ./db/conf:/etc/mysql/conf.d
-    networks:
-      dbnet:
-        ipv4_address: 10.0.0.2
     environment:
       - MYSQL_ROOT_PASSWORD=sSUomKm1Q7IPdWOD
       - MYSQL_DATABASE=app42
@@ -38,16 +35,6 @@ services:
       - type: bind
         source: ./src/tomcat
         target: /usr/local/tomcat/ROOT/
-    networks:
-      dbnet:
-        ipv4_address: 10.0.0.3
-
-networks:
-  dbnet:
-    driver: bridge
-    ipam:
-      config:
-        - subnet: 10.0.0.0/29
 
 volumes:
   wardir:
